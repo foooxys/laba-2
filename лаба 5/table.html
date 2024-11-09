@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Страничка Сашки #3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <a href="лаба 2.html">Основная страница</a>
+        <a href="page2.html">Позиционирование элементов</a>
+        <a href="table.html">Таблица</a>
+    </div>
+    <h1>Топ моих любимых режиссёров и их фильмы</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Фильмы</th>
+                <th>Жанр</th>
+                <th>Любимые актёры режиссера</th>
+                <th>Изюминка</th>
+            </tr>
+        </thead>
+        <tbody id="directorTable">
+            <tr>
+                <td>1</td>
+                <td>Уэс Андерсон</td>
+                <td>Отель "Гранд Будапешт"<br>Королевство полной луны<br>Французский вестник</td>
+                <td>Комедия, драма</td>
+                <td>Билл Мюррей<br>Сирша Ронан<br>Оуэн Уилсон<br>Сирша Ронан</td>
+                <td>Симметрия и цветовая палитра</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Пит Доктер</td>
+                <td>Душа<br>Головоломка<br>Вверх</td>
+                <td>Анимация</td>
+                <td>-</td>
+                <td>рассуждение о чувствах людей</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Квентин Тарантино</td>
+                <td>Убить Билла<br>Однажды...в Голливуде<br>Криминальное чтиво</td>
+                <td>Боевик</td>
+                <td>Ума Турман<br>Леонардо Ди Каприо<br>Сэмюэл Л. Джексон</td>
+                <td>Резня, саундтрек</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Тим Бёртон</td>
+                <td>Битлджус<br>Труп невесты<br>Эдвард руки-ножницы</td>
+                <td>Комедия, драма, фэнтези</td>
+                <td>Хелена Бонем Картер<br>Джони Депп<br>Кристина Риччи</td>
+                <td>Саундтрек, персонажи, актёры</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Алексей Балабанов</td>
+                <td>Брат<br>Жмурки<br>Мне не больно</td>
+                <td>Драма, боевик</td>
+                <td>Сергей Бодров мл.<br>Сергей Маковецкий<br>Виктор Сухоруков</td>
+                <td>Россия 90ых</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form id="directorForm">
+        <label for="number">#:</label>
+        <input type="number" id="number" name="number" min="1" max="100" required><br><br>
+        
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="movies">Фильмы:</label>
+        <textarea id="movies" name="movies" required></textarea><br><br>
+        
+        <label for="genre">Жанр:</label>
+        <select id="genre" name="genre" required>
+            <option value="">Выберите жанр</option>
+            <option value="Боевик">Боевик</option>
+            <option value="Детектив">Детектив</option>
+            <option value="Фантастика">Фантастика</option>
+            <option value="Комедия">Комедия</option>
+            <option value="Ужасы">Ужасы</option>
+            <option value="Хоррор">Хоррор</option>
+            <option value="Военный">Военный</option>
+            <option value="Документальный">Документальный</option>
+            <option value="Байопик">Байопик</option>
+            <option value="Мюзикл">Мюзикл</option>
+            <option value="Мелодрама">Мелодрама</option>
+            <option value="Приключения">Приключения</option>
+            <option value="Семейный">Семейный</option>
+            <option value="Анимация">Анимация</option>
+            <option value="Фэнтези">Фэнтези</option>
+        </select><br><br>
+        
+        <label for="actors">Любимые актёры:</label>
+        <input type="text" id="actors" name="actors" required><br><br>
+        
+        <label for="highlight">Изюминка:</label>
+        <input type="text" id="highlight" name="highlight" required><br><br>
+        
+        <button type="submit">Добавить</button>
+    </form>
+
+    <script>
+        
+        document.getElementById('directorForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+            const number = document.getElementById('number').value;
+            const name = document.getElementById('name').value;
+            const movies = document.getElementById('movies').value;
+            const genre = document.getElementById('genre').value;
+            const actors = document.getElementById('actors').value;
+            const highlight = document.getElementById('highlight').value;
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${number}</td>
+                <td>${name}</td>
+                <td>${movies.replace(/\n/g, '<br>')}</td>
+                <td>${genre}</td>
+                <td>${actors}</td>
+                <td>${highlight}</td>
+            `;
+
+            document.getElementById('directorTable').appendChild(newRow);
+
+            alert('Данные успешно добавлены!');
+
+            document.getElementById('directorForm').reset();
+        });
+    </script>
+</body>
+</html>
